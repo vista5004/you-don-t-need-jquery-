@@ -55,12 +55,39 @@ do{
 (2)最相近的元素：<code>$("p").closet("DIV")</code>
 (3)找到子元素：<code>$("ul").find("*")</code>
 (4)找到特定子元素：<code>$("ul").find('p')</code>
+4.2 Javascript+webAPI用法
+(1)找到所有父元素：
+```
+var currentElement=document.getElementsByTagName('a')[0]；
+var parents=[];
+while(element.parentElement){
+    parents.push(currentElement.parent);
+    currentElement=currentElement.parentElement;
+}
+```
+(2)找到最相近的元素
+```
+var close=function(referElement,closeSelector){
+     //如果提供了element.closet()方法
+     if(referElement.closet()){
+        return referElement.closet(closeSelector)
+     }
+     var matches=Element.prototype.matches ||
+                 Element.prototype.msMatchesSelector ||
+                 Element.prototype.webkitMatchesSelector,
+                 currentElement=referElement;
+     while(currentElement){
+         if(matches.call(currentElement,closeSelector)){
+            return currentElement;
+         }
+         current.parentElement;
+     }
+     return null;
 
-
-
-
-
-
+}
+```
+(3)找到子元素:<code>document.querySelectorAll('UL *')</code>
+(4)找到所有子元素:<code>document.querySelectorAll('UL SPAN')</code>
 
 
 
