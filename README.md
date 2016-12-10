@@ -89,13 +89,75 @@ var close=function(referElement,closeSelector){
 (3)找到子元素:<code>document.querySelectorAll('UL *')</code>
 (4)找到所有子元素:<code>document.querySelectorAll('UL SPAN')</code>
 
+####5、高级元素选择器
+5.1 JQuery 用法
+(1)不包括某个元素<code> $("ul li").not('.active')</code>;
+5.2Javascript+webAPI用法
+(1)不包括某个元素：<code>document.querySelectorAll('ul li:not(.active)')</code>;
+//低版本解决
+```
+var items=document.querySelectorAll('ul li');
+var result=[];
+for(var i=0;i<items.length;i++){
+    if(items[i].className!=='active'){
+        result.push(items[i]);
+    }
+}
+```
+####6、混合元素选择器
+6.1 JQuery 用法
+同时选择多个元素：<code>var result=$("#one ,.two ,ol");</code>
+6.2Javascript+webAPI用法
+同时选择多个元素：<code>var result=document.querySelectorAll('#one ,.two ,ol');</code>
 
+####7、混合元素选择器
+7.1Javascript+webAPI用法
+(1)指定类型的元素：<code>var result=document.querySelectorAll('input[type="button"]')</code>
+<code> var result=document.querySelectorAll('input[type="password"]')</code>
+<code>var result=document.querySelectorAll('input[type="file"]')</code>
+7.2 JQuery 用法
+(1)指定类型的元素：<code>var result=$("input[type='button']")<code>
 
+####8、Jquery $的替代
+8.1Javascript+webAPI用法
+(1)
+```
+window.$=function(selector){
+    return document.querySelectorAll(selector);
+}
+$(".someClass");
+$("#someId");
+$(".someParent > .someChild");
+$("ul li:not(.active)");
+```
+##二、元素属性
+####1、使用属性找到元素
+1.1 JQuery 用法
+(1)指定属性的元素：<code>var result=$("[required],[disabled]")</code>
+1.2Javascript+webAPI用法
+(1)指定属性的元素：<code>var result=document.querySelectorAll('[required],[disabled]')</code>
+####2、使用属性名称与属性值找到元素
+2.1 JQuery 用法
+(1)指定属性名称与值的元素：<code>var result=$("a[href='www.si.co']")</code>
+2.2Javascript+webAPI用法
+(1)指定属性名称与值的元素：<code>var result=document.querySelectorAll("a[href='www.cos.s']")</code>
 
+####3、使用属性找到元素选择指定属性具有包含一个给定的子字符串的元素
+3.1 JQuery 用法
+(1)包含一个给定的子字符串的元素：<code>var result=$("a[href*='www']")</code>
+3.2Javascript+webAPI用法
+(1)包含一个给定的子字符串的元素：<code>var result=document.querySelectorAll("a[href*='www']")</code>
 
+####4、选择指定属性用空格分隔的值中包含一个给定值的元素。
+4.1 JQuery 用法
+(1)用空格分隔的值中包含一个给定值的元素:<code>var result=$("div[class~='two']")</code>
+4.2Javascript+webAPI用法
+(1)用空格分隔的值中包含一个给定值的元素:<code>var result=document.querySelectorAll("[class~='two']")</code>
 
-
-
-
+####5、选择指定属性是以给定字符串开始的元素
+5.1 JQuery 用法
+(1)选择指定属性是以给定字符串开始的元素:<code>var result=$("div[class^='new']")</code>
+5.2Javascript+webAPI用法
+(1)选择指定属性是以给定字符串开始的元素:<code>var result=document.querySelectorAll("div[class^='new']")</code>
 
 
