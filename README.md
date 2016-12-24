@@ -194,14 +194,30 @@ document.querySelectorAll(".test")[0].classList.remove("red");
 (2)通过正则实现
 ```
 var removeClass=function(element,className){
-    element.className=element.className.replace("")
+    element.className=element.className.replace(new Regex('(^|\\s)'+className+'(^|\\s)'),' ');
 }
+removeClass(document.getElementsByClassName("test")[0],className);
+document.getElementsByClassName("test")[0].className+="red";
 ```
-
-
-
-
-
+####3、触发class属性。
+2.1 JQuery 用法
+(1)通过toggleClass实现：
+<code>$("#test").toggleClass("hide")</code>
+2.1 Javascript+webAPI用法
+(1)通过classList实现
+<code>document.getElementsByClassName("test")[0].toggleClass("hide")</code>
+(2)通过正则实现
+```
+var toggleClass=function(element,className){
+    var pattern =new Regex(new Regex('(^|\\s)'+className+'(^|\\s)'));
+    if(pattern.test(element.className)){
+       element.className=element.className.replace(pattern,' ');
+    }else{
+       element.className+=' '+className;
+    }
+}
+toggleClass(document.getElementsByClassName("test")[0],className);
+```
 
 
 
