@@ -160,4 +160,55 @@ $("ul li:not(.active)");
 5.2Javascript+webAPI用法
 (1)选择指定属性是以给定字符串开始的元素:<code>var result=document.querySelectorAll("div[class^='new']")</code>
 
+##三、使用元素属性
+####1、读取class属性。
+1.1 JQuery 用法
+(1)通过hasClass判断是否包含某个特定的元素
+```
+var isTick=$("#test").hasClass("tick");
+var type=$("#test").hasClass("tick")?"normal":"unNormal"
+```
+1.1 Javascript+webAPI用法
+(1)通过classList来实现
+```
+var isTick=document.querySelector("#tick").classList.contains("tick");
+var type=document.querySelector("#tick").classList.contains("tick").
+```
+(2)通过正则来实现
+```
+var hasClass=function(element,className){
+    return new RegExp('(^|\\s)'+className+'(^|\\s)').test(element.className);
+}
+var isTick=hasClass(document.querySelector("#tick"),"tick");
+var type=hasClass(document.querySelector("#tick"),"tick")?"normal":"unNormal"
+```
+####2、添加和删除class属性。
+2.1 JQuery 用法
+(1)通过addClass和removeClass实现：<code>$(".test").removeClass("red").addClass("blue")</code>
+2.1 Javascript+webAPI用法
+(1)通过classList实现
+```
+document.querySelectorAll(".test")[0].classList.add("blue");
+document.querySelectorAll(".test")[0].classList.remove("red");
+```
+(2)通过正则实现
+```
+var removeClass=function(element,className){
+    element.className=element.className.replace("")
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
