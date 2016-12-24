@@ -168,7 +168,7 @@ $("ul li:not(.active)");
 var isTick=$("#test").hasClass("tick");
 var type=$("#test").hasClass("tick")?"normal":"unNormal"
 ```
-1.1 Javascript+webAPI用法
+1.2 Javascript+webAPI用法
 (1)通过classList来实现
 ```
 var isTick=document.querySelector("#tick").classList.contains("tick");
@@ -185,7 +185,7 @@ var type=hasClass(document.querySelector("#tick"),"tick")?"normal":"unNormal"
 ####2、添加和删除class属性。
 2.1 JQuery 用法
 (1)通过addClass和removeClass实现：<code>$(".test").removeClass("red").addClass("blue")</code>
-2.1 Javascript+webAPI用法
+2.2 Javascript+webAPI用法
 (1)通过classList实现
 ```
 document.querySelectorAll(".test")[0].classList.add("blue");
@@ -200,10 +200,10 @@ removeClass(document.getElementsByClassName("test")[0],className);
 document.getElementsByClassName("test")[0].className+="red";
 ```
 ####3、触发class属性。
-2.1 JQuery 用法
+3.1 JQuery 用法
 (1)通过toggleClass实现：
 <code>$("#test").toggleClass("hide")</code>
-2.1 Javascript+webAPI用法
+3.2 Javascript+webAPI用法
 (1)通过classList实现
 <code>document.getElementsByClassName("test")[0].toggleClass("hide")</code>
 (2)通过正则实现
@@ -218,13 +218,17 @@ var toggleClass=function(element,className){
 }
 toggleClass(document.getElementsByClassName("test")[0],className);
 ```
-
-
-
-
-
-
-
+####4、读取attribute属性。
+4.1 JQuery 用法
+(1)通过attr和is实现：
+<code>$("input").attr("type")</code>
+<code>$("input").is("required")</code>
+4.2 Javascript+webAPI用法
+(1)通过getAttribute和hasAttribute实现：
+```
+document.getElementsByTagName("input")[0].getAttribute('type')
+document.getElementsByTagName("input")[0].hasAttribute('required');
+```
 
 
 
