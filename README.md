@@ -13,11 +13,11 @@
 (4)伪类：<code>document.querySelector('input:focus')</code><br>
 ####2、关系选择器
 2.1 JQuery 用法
-(1)父元素：<code>$("").parent();</code><br>
-(2)父父元素：<code>$("").parent().parent();</code><br>
-(3)子元素：<code>$("").children();</code><br>
-(4)子元素快速选择:<code>$("DIV>P");</code><br>
-(5)所以节点包括文本：<code>$("").contents();</code><br>
+(1)Jquery中parent()方法得到父元素：<code>$("").parent();</code><br>
+(2)Jquery中parent()方法得到父父元素：<code>$("").parent().parent();</code><br>
+(3)Jquery中children()方法得到子元素：<code>$("").children();</code><br>
+(4)Jquery中选择器方法快速选择:<code>$("DIV>P");</code><br>
+(5)Jquery中选择器方法所以节点包括文本：<code>$("").contents();</code><br>
 (6)所有节点；<code>$("a > *");</code><br>
 2.2 Javascript+webAPI用法
 (1)父元素：<code>element.parentNode;</code><br>
@@ -29,9 +29,9 @@
 (7)制定节点下面的子节点：<code>DIV.childNodes</code>
 ####3、同级选择器
 3.1 JQuery 用法
-(1)相邻的兄弟节点（除自己外都是）：<code>$("").siblings()</code>;
-(2)前面的相邻节点：<code>$("").prev()</code>;
-(3)后面的相邻节点：<code>$("").next()</code>;
+(1)Jquery中siblings()方法得到相邻的兄弟节点（除自己外都是）：<code>$("").siblings()</code>;
+(2)Jquery中prev()方法得到前面的相邻节点：<code>$("").prev()</code>;
+(3)Jquery中next()方法得到后面的相邻节点：<code>$("").next()</code>;
 3.2 Javascript+webAPI用法
 (1)所有的节点：<code>var result=document.querySelectorAll('#parent > SPAN ~ *')</code>;
 (2)指定SPAN元素旁边是DIV元素的特殊节点：<code>var result=document.querySelectorAll('#parent > SPAN ~ DIV')</code>;//P
@@ -51,10 +51,10 @@ do{
 元素：<code>var result=document.querySelector('SPAN').nextElementSibling.nextElementSibling.nextElementSibling;</code>
 ####4、祖先元素和后代选择器
 4.1 JQuery 用法
-(1)父元素：<code>var $result=$('p').parent();</code>
-(2)最相近的元素：<code>$("p").closet("DIV")</code>
-(3)找到子元素：<code>$("ul").find("*")</code>
-(4)找到特定子元素：<code>$("ul").find('p')</code>
+(1)Jquery中parent()方法得到父元素：<code>var $result=$('p').parent();</code>
+(2)Jquery中closet()方法得到最相近的元素：<code>$("p").closet("DIV")</code>
+(3)Jquery中find()方法得到子元素：<code>$("ul").find("*")</code>
+(4)Jquery中find()方法得到特定子元素：<code>$("ul").find('p')</code>
 4.2 Javascript+webAPI用法
 (1)找到所有父元素：
 ```
@@ -106,7 +106,7 @@ for(var i=0;i<items.length;i++){
 ```
 ####6、混合元素选择器
 6.1 JQuery 用法
-同时选择多个元素：<code>var result=$("#one ,.two ,ol");</code>
+(1)Jquery中同时选择多个元素：<code>var result=$("#one ,.two ,ol");</code>
 6.2Javascript+webAPI用法
 同时选择多个元素：<code>var result=document.querySelectorAll('#one ,.two ,ol');</code>
 
@@ -229,6 +229,94 @@ toggleClass(document.getElementsByClassName("test")[0],className);
 document.getElementsByTagName("input")[0].getAttribute('type')
 document.getElementsByTagName("input")[0].hasAttribute('required');
 ```
+####5、设置attribute属性。
+5.1 JQuery 用法
+(1)通过Jquery中方法attr/removeAttr实现：
+```
+$("input").attr("type","email")
+          .removeAttr("required")
+          .attr("name","EmailUser")
+```
+5.2 Javascript+webAPI用法
+(1)通过浏览器的setAttribute/removeAttribute实现：
+```
+document.getElementsByTagName("input")[0].setAttribute("type","email");
+document.getElementsByTagName("input")[0].removeAttribute("required");
+document.getElementsByTagName("input")[0].setAttribute('name','userName');
+```
+##四、HTML数据存储
+####1、使用data属性来存储数据。
+1.1 JQuery 用法
+(1)通过Jquery中方法data实现：
+```
+<img src="default.png" data-zoom-url="www.com">
+$("img").data("user","jack");
+```
+1.2 Javascript+webAPI用法
+```
+<img src="default.png" data-zoom-url="www.com">
+document.getElementsByTaName("img")[0].setAttribute("user","jack");
+```
+####2、使用data属性来存储负责数据数据。
+2.1 JQuery 用法
+(1)通过Jquery中方法data实现：
+```
+$("img").data("secens",[
+    {
+        offset: 9,
+        title: 'intro',
+        description: 'introducing the characters',
+        location: 'living room'
+    },
+    {
+        offset: 19,
+        title: 'in32tro',
+        description: 'introdfducing the casharacters',
+        location: 'lividnga room'
+    },
+    {
+        offset: 29,
+        title: 'indstro',
+        description: 'introdugfcing the chaaracters',
+        location: 'lisdving sdroom'
+    }
+])
+//使用获取
+$("img").date("secens")[0].tittle
+```
+2.2 Javascript+webAPI用法
+```
+var cache=[];
+var setData=function(el,key,data){
+    var cacheIdx=el.getAttribute("data-cache-idx");
+    var cacheEntry=cache[cacheIdx] || {};
+    cacheEntry[key]=data;
+    if(cacheIdx==null){
+        cacheIdx=cache.push(cacheEntry)-1;
+        el.setAttribute("data-cache-idx",cacheIdx);
+    }
+}
+setData(document.getElementsByTagName('VIDEO')[0],'scenes',[
+    {
+            offset: 9,
+            title: 'intro',
+            description: 'introducing the characters',
+            location: 'living room'
+        },
+        {
+            offset: 19,
+            title: 'in32tro',
+            description: 'introdfducing the casharacters',
+            location: 'lividnga room'
+        },
+        {
+            offset: 29,
+            title: 'indstro',
+            description: 'introdugfcing the chaaracters',
+            location: 'lisdving sdroom'
+        }
+])
+var cacheIdx=document.getElementsByTagName("img")[0].getAttribute("data-cache-idx");
+var message=cache[cacheIdx].scenes[1].tittle
 
-
-
+```
