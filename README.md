@@ -1,25 +1,25 @@
 # you-don`t-need-jquery 速查表
 ##一、选择器
 #### 1、核心选择器
-1.1 JQuery用法
+1.1 JQuery用法<br>
 (1)<code>id:$("#id")</code><br>
 (2)<code>class:$(".class")</code><br>
 (3)<code>element: $("div")</code><br>
 (4)伪类：<code>$("input:focus")</code><br>
-1.2 Javascript+webAPI用法
+1.2 Javascript+webAPI用法<br>
 (1)<code>id:document.getElementById("id")</code><br>
 (2)<code>class:document.getElementsByClass("class')</code><br>
 (3)<code>element:document.getElementsByTagName("div")</code><br>
 (4)伪类：<code>document.querySelector('input:focus')</code><br>
 ####2、关系选择器
-2.1 JQuery 用法
+2.1 JQuery 用法<br>
 (1)Jquery中parent()方法得到父元素：<code>$("").parent();</code><br>
 (2)Jquery中parent()方法得到父父元素：<code>$("").parent().parent();</code><br>
 (3)Jquery中children()方法得到子元素：<code>$("").children();</code><br>
 (4)Jquery中选择器方法快速选择:<code>$("DIV>P");</code><br>
 (5)Jquery中选择器方法所以节点包括文本：<code>$("").contents();</code><br>
 (6)所有节点；<code>$("a > *");</code><br>
-2.2 Javascript+webAPI用法
+2.2 Javascript+webAPI用法<br>
 (1)父元素：<code>element.parentNode;</code><br>
 (2)父元素的父元素：<code>element.parentNode.parentNode;</code><br>
 (3)子元素：<code>element.childNodes;</code><br>
@@ -28,11 +28,11 @@
 (6)指定特殊节点：<code>var result=document.querySelectorAll('DIV > P')</code>;//P<br>
 (7)制定节点下面的子节点：<code>DIV.childNodes</code><br>
 ####3、同级选择器
-3.1 JQuery 用法
+3.1 JQuery 用法<br>
 (1)Jquery中siblings()方法得到相邻的兄弟节点（除自己外都是）：<code>$("").siblings()</code>;<br>
 (2)Jquery中prev()方法得到前面的相邻节点：<code>$("").prev()</code>;<br>
 (3)Jquery中next()方法得到后面的相邻节点：<code>$("").next()</code>;<br>
-3.2 Javascript+webAPI用法
+3.2 Javascript+webAPI用法<br>
 (1)所有的节点：<code>var result=document.querySelectorAll('#parent > SPAN ~ *')</code>;<br>
 (2)指定SPAN元素旁边是DIV元素的特殊节点：<code>var result=document.querySelectorAll('#parent > SPAN ~ DIV')</code>;//P<br>
 (3)指定SPAN元素第一个节点元素：<code>var result=document.querySelector('#parent > SPAN + *')</code><br>
@@ -130,6 +130,7 @@ $("#someId");
 $(".someParent > .someChild");
 $("ul li:not(.active)");
 ```
+
 ##二、元素属性
 ####1、使用属性找到元素
 1.1 JQuery 用法<br>
@@ -140,30 +141,30 @@ $("ul li:not(.active)");
 2.1 JQuery 用法<br>
 (1)指定属性名称与值的元素：<code>var result=$("a[href='www.si.co']")</code><br>
 2.2Javascript+webAPI用法<br>
-(1)指定属性名称与值的元素：<code>var result=document.querySelectorAll("a[href='www.cos.s']")</code><br>
+(1)指定属性名称与值的元素：<code>var result=document.querySelectorAll("a[href='www.cos.s']")</code> <br>
 
 ####3、使用属性找到元素选择指定属性具有包含一个给定的子字符串的元素
 3.1 JQuery 用法<br>
-(1)包含一个给定的子字符串的元素：<code>var result=$("a[href*='www']")</code><br>
+(1)包含一个给定的子字符串的元素：<code>var result=$("a[href*='www']")</code> <br>
 3.2Javascript+webAPI用法<br>
-(1)包含一个给定的子字符串的元素：<code>var result=document.querySelectorAll("a[href*='www']")</code><br>
+(1)包含一个给定的子字符串的元素：<code>var result=document.querySelectorAll("a[href*='www']")</code> <br>
 
 ####4、选择指定属性用空格分隔的值中包含一个给定值的元素。
 4.1 JQuery 用法<br>
-(1)用空格分隔的值中包含一个给定值的元素:<code>var result=$("div[class~='two']")</code><br>
+(1)用空格分隔的值中包含一个给定值的元素:<code>var result=$("div[class~='two']")</code> <br>
 4.2Javascript+webAPI用法<br>
-(1)用空格分隔的值中包含一个给定值的元素:<code>var result=document.querySelectorAll("[class~='two']")</code><br>
+(1)用空格分隔的值中包含一个给定值的元素:<code>var result=document.querySelectorAll("[class~='two']")</code> <br>
 
 ####5、选择指定属性是以给定字符串开始的元素
 5.1 JQuery 用法<br>
-(1)选择指定属性是以给定字符串开始的元素:<code>var result=$("div[class^='new']")</code><br>
+(1)选择指定属性是以给定字符串开始的元素:<code>var result=$("div[class^='new']")</code> <br>
 5.2Javascript+webAPI用法<br>
-(1)选择指定属性是以给定字符串开始的元素:<code>var result=document.querySelectorAll("div[class^='new']")</code><br>
+(1)选择指定属性是以给定字符串开始的元素:<code>var result=document.querySelectorAll("div[class^='new']")</code> <br>
 
 ##三、使用元素属性
 ####1、读取class属性。
-1.1 JQuery 用法<br>
-(1)通过hasClass判断是否包含某个特定的元素<br>
+1.1 JQuery 用法 <br>
+(1)通过hasClass判断是否包含某个特定的元素 <br>
 ```
 var isTick=$("#test").hasClass("tick");
 var type=$("#test").hasClass("tick")?"normal":"unNormal"
