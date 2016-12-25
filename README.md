@@ -120,7 +120,7 @@ for(var i=0;i<items.length;i++){
 
 ####8、Jquery $的替代
 8.1Javascript+webAPI用法<br>
-(1)
+(1)通过document.querySelectorAll实现<br>
 ```
 window.$=function(selector){
     return document.querySelectorAll(selector);
