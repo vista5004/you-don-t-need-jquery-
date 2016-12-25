@@ -1,7 +1,7 @@
 # you-don`t-need-jquery 速查表
 ##一、选择器
 #### 1、核心选择器
-1.1 JQuery用法：<p>
+1.1 JQuery用法：<br>
 (1)<code>id:$("#id")</code><br>
 (2)<code>class:$(".class")</code><br>
 (3)<code>element: $("div")</code><br>
@@ -47,8 +47,8 @@ do{
 } while(currentElement)
 ```
 (5)找到后一个节点：<br>
-节点：<code>var result=document.querySelector('SPAN').nextSibling.nextSibling.nextSibling;</code>
-元素：<code>var result=document.querySelector('SPAN').nextElementSibling.nextElementSibling.nextElementSibling;</code>
+节点：<code>var result=document.querySelector('SPAN').nextSibling.nextSibling.nextSibling;</code><br>
+元素：<code>var result=document.querySelector('SPAN').nextElementSibling.nextElementSibling.nextElementSibling;</code><br>
 ####4、祖先元素和后代选择器
 4.1 JQuery 用法<br>
 (1)Jquery中parent()方法得到父元素：<code>var $result=$('p').parent();</code><br>
@@ -238,7 +238,7 @@ $("input").attr("type","email")
           .removeAttr("required")
           .attr("name","EmailUser")
 ```
-5.2 Javascript+webAPI用法
+5.2 Javascript+webAPI用法：<br>
 (1)通过浏览器的setAttribute/removeAttribute实现：<br>
 ```
 document.getElementsByTagName("input")[0].setAttribute("type","email");
