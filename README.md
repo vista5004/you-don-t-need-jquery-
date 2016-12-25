@@ -116,7 +116,7 @@ for(var i=0;i<items.length;i++){
 <code> var result=document.querySelectorAll('input[type="password"]')</code><br>
 <code>var result=document.querySelectorAll('input[type="file"]')</code><br>
 7.2 JQuery 用法<br>
-(1)指定类型的元素：<code>var result=$("input[type='button']")<code><br>
+(1)指定类型的元素：<code>var result=$("input[type='button']")</code> <br>
 
 ####8、Jquery $的替代
 8.1Javascript+webAPI用法<br>
