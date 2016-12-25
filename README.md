@@ -1,7 +1,7 @@
 # you-don`t-need-jquery 速查表
 ##一、选择器
 #### 1、核心选择器
-1.1 JQuery用法<br>
+1.1 JQuery用法：<p>
 (1)<code>id:$("#id")</code><br>
 (2)<code>class:$(".class")</code><br>
 (3)<code>element: $("div")</code><br>
