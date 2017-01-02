@@ -298,7 +298,7 @@ var setData=function(el,key,data){
     }
 }
 setData(document.getElementsByTagName('VIDEO')[0],'scenes',[
-    {
+        {
             offset: 9,
             title: 'intro',
             description: 'introducing the characters',
@@ -321,3 +321,90 @@ var cacheIdx=document.getElementsByTagName("img")[0].getAttribute("data-cache-id
 var message=cache[cacheIdx].scenes[1].tittle
 
 ```
+2.3 MutationObserver用法<br>
+/*
+当使用出去数据的方法时候需要借用MutationObserver这个HTML5新的api，但是这个新方法不兼容IE10以下的浏览器。
+可以参照这个来进行pofill
+https://github.com/webcomponents/webcomponentsjs/blob/v0.7.20/MutationObserver.js
+为什么使用MutationObserver这个方法呢，因为需要在移除dom的时候移除data，虽然可以用事件监听，但是当对象多的时候，就会产生性能问题，因为MutationObserver这个方法是异步的，
+都发生之后在进行监听。
+可以参考这篇文章http://www.cnblogs.com/jscode/p/3600060.html
+*/
+```
+var videoEl=document.querySelector("video");
+var observer=new MutationObserver(function(mutations){
+    var wasVideoRemoved=mutations.some(function(mutation){
+        return mutation.removeNodes.some(function(removeNode){
+            return removeNode===videoEl
+        });
+    });
+    if(wasVideoRemoved){
+        var cacheId=videoEl.getAttribute("viedoEl");
+        cache.splice(cacheId,1);
+        observer.disconnect();
+    }
+})
+observe.observe(videoEl.parentNode,{childList:true})
+```
+2.5 html5新储存数据data用法<br>
+```html
+<video src="my-video.mp4" data-scene-offsets="9,22,38">
+```
+获取对象
+```
+var offsets=document.querySelector('video').dataset.sceneOffsets;
+```
+赋值
+```
+document.querySelector('video').dataset.sceneOffsets;
+```
+删除
+```
+delete document.querySelector('video').dataset.sceneOffsets;
+```
+2.6 使用 ECMAScript 2015 WeakMap 收集数据<br>
+WeakMap是一种特殊的集合对象类型，拥有map的所有特性，用法也相同，唯一不同的是，WeakMap 的键会检查变量引用，
+只要其中任何一个引用类型被解除，该值就会被删除。<br>
+存储数据<br>
+```
+var cache=new WeakMap();
+cache.set(document.querySelector('video'),{
+    scenes:[
+        {
+            offset: 9,
+            title: 'intro',
+            description: 'introducing the characters',
+            location: 'living room'
+        },
+        {
+            offset: 19,
+            title: 'in32tro',
+            description: 'introdfducing the casharacters',
+            location: 'lividnga room'
+        },
+        {
+            offset: 29,
+            title: 'indstro',
+            description: 'introdugfcing the chaaracters',
+            location: 'lisdving sdroom'
+        }
+    ]
+})
+```
+获取数据<br>
+```
+var cache=cache.get(document.querySelector('video')).scenes[1].tittle
+```
+删除数据<br>
+```
+cache.delete(document.querySelector('video'));
+```
+
+
+
+
+
+
+
+
+
