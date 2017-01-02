@@ -399,10 +399,70 @@ var cache=cache.get(document.querySelector('video')).scenes[1].tittle
 ```
 cache.delete(document.querySelector('video'));
 ```
-
-
-
-
+##五、改变style样式
+####1、获取和设置样式
+1.1 JQuery 用法<br>
+设置样式
+```
+function onSelected($selectedButton){
+    $selectedButton.css({
+        color:"white",
+        backgroundColor:"blue",
+        borderColor:"blue"
+    })
+}
+```
+获取样式
+```
+function onClicked($onClickButton){
+    var currentOpacity=$onClickButton.css('opacity');
+    $onClickButton.css("opacity",currentOpacity-1);
+}
+```
+2.2 Javascript+webAPI用法<br>
+css样式<br>
+```
+button.selected{
+    color:white,
+    background-color:blue,
+    border-color:blue
+}
+```
+设置样式
+```
+function onSelected($selectedButton){
+    $selectedButton.className+=' selected'
+}
+```
+获取样式
+```
+var getStyle=function(element,style){
+    if(element.currentStyle){
+        return element.currentStyle[style]
+    }else if(window.getComputeStyle){
+        return window.getComputeStyle(element,false)[style]
+    }
+}
+var onClicked(clickBox){
+    var currentOpacity=clickBox.style.opacity||getStyle(clickBox,"opacity");
+    if(currentOpacity){
+        clickBox.style.opacity=currentOpacity-1;
+    }
+}
+```
+####1、设置元素的可见性
+1.1 JQuery 用法<br>
+设置可见性
+```
+$element.hide();
+$element.show();
+```
+判断可见性
+```
+$element.is(":visible")
+$element.is(":hidden")
+```
+1.2
 
 
 
