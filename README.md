@@ -462,9 +462,38 @@ $element.show();
 $element.is(":visible")
 $element.is(":hidden")
 ```
-1.2
-
-
-
+####2、获取元素的宽度和高度
+2.1 JQuery 用法<br>
+```
+//获取对象高度和宽度
+$element.width();
+$element.height();
+//获取对象高度和宽度，包括padding但是不包括border
+$element.innerWidth();
+$element.innerHeight();
+//获取对象高度和宽度，包括padding包括border
+$element.outerWidth();
+$element.outerHeight();
+//获取对象高度和宽度，包括padding包括border和margin
+```
+2.2 Javascript+webAPI用法<br>
+```
+//获取对象高度和宽度
+var getStyle=function(element,style){
+    if(element.currentStyle){
+        return element.currentStyle[style]
+    }else if(window.getComputeStyle){
+        return window.getComputeStyle(element,false)[style];
+    }
+}
+getStyle($element,"width");
+getStyle($element,"height");
+//获取对象高度和宽度，包括padding但是不包括border
+document.querySelector("div").clientWidth;
+document.querySelector("div").clientHeight;
+//获取对象高度和宽度，包括padding包括border
+document.querySelector("div").offsetWidth;
+document.querySelector("div").offsetHeight;
+```
 
 
