@@ -495,5 +495,46 @@ document.querySelector("div").clientHeight;
 document.querySelector("div").offsetWidth;
 document.querySelector("div").offsetHeight;
 ```
+####3、移动元素
+3.1 JQuery 用法<br>
+```
+//把某一元素移动到另一元素后方
+var $element=$("ul");
+var $element1=$("ul").find("li").eq(0);
+var $element2=$("ul").find("li").eq(1);
+$element2.after($element1);
+//把一个元素插入另一个元素中，并且在其后面插入特定元素
+var $element3=$("ul").find("li").eq(2);
+$element3.appendTo($("body"));
+$element3.after($(".types"))
+```
+3.2 Javascript+webAPI用法<br>
+```
+//使用insertBefore插入元素
+var ul=document.querySelector("ul");
+var li1=ul.children[0];
+var li2=ul.children[1];
+ul.insertBefore(li1,li2);//在ul中插入li1，并且保证在li2前面
+//使用appendTo插入元素
+document.querySelector('.type').appendChild(document.querySelector('ul > li'));
+```
+####4、复制元素
+4.1 JQuery 用法<br>
+```
+$(".number").clone();
+```
+4.2 Javascript+webAPI用法<br>
+```
+document.querySelector(".number").cloneNode();
+document.querySelector(".number").cloneNode(true);//有true参数表示节点深度复制
+```
+
+
+
+
+
+
+
+
 
 
