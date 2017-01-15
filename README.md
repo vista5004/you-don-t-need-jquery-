@@ -450,8 +450,8 @@ var onClicked(clickBox){
     }
 }
 ```
-####1、设置元素的可见性
-1.1 JQuery 用法<br>
+####3、设置元素的可见性
+3.1 JQuery 用法<br>
 设置可见性
 ```
 $element.hide();
@@ -462,8 +462,8 @@ $element.show();
 $element.is(":visible")
 $element.is(":hidden")
 ```
-####2、获取元素的宽度和高度
-2.1 JQuery 用法<br>
+####4、获取元素的宽度和高度
+4.1 JQuery 用法<br>
 ```
 //获取对象高度和宽度
 $element.width();
@@ -476,7 +476,7 @@ $element.outerWidth();
 $element.outerHeight();
 //获取对象高度和宽度，包括padding包括border和margin
 ```
-2.2 Javascript+webAPI用法<br>
+4.2 Javascript+webAPI用法<br>
 ```
 //获取对象高度和宽度
 var getStyle=function(element,style){
@@ -495,8 +495,8 @@ document.querySelector("div").clientHeight;
 document.querySelector("div").offsetWidth;
 document.querySelector("div").offsetHeight;
 ```
-####3、移动元素
-3.1 JQuery 用法<br>
+####5、移动元素
+5.1 JQuery 用法<br>
 ```
 //把某一元素移动到另一元素后方
 var $element=$("ul");
@@ -508,7 +508,7 @@ var $element3=$("ul").find("li").eq(2);
 $element3.appendTo($("body"));
 $element3.after($(".types"))
 ```
-3.2 Javascript+webAPI用法<br>
+5.2 Javascript+webAPI用法<br>
 ```
 //使用insertBefore插入元素
 var ul=document.querySelector("ul");
@@ -518,18 +518,67 @@ ul.insertBefore(li1,li2);//在ul中插入li1，并且保证在li2前面
 //使用appendTo插入元素
 document.querySelector('.type').appendChild(document.querySelector('ul > li'));
 ```
-####4、复制元素
-4.1 JQuery 用法<br>
+####6、复制元素
+6.1 JQuery 用法<br>
 ```
 $(".number").clone();
 ```
-4.2 Javascript+webAPI用法<br>
+6.2 Javascript+webAPI用法<br>
 ```
 document.querySelector(".number").cloneNode();
 document.querySelector(".number").cloneNode(true);//有true参数表示节点深度复制
 ```
-
-
+##六、组建元素
+####1、创建和删除元素
+1.1 JQuery 用法<br>
+```
+//添加元素
+var flavors=$('.flavors');
+$("<li>ABCDEFG</li>").appendTo(flavors);
+$("<li>abcefg</li>").appendTo(flavors);
+//移除元素
+$(".types li:last").remove();
+```
+1.2 Javascript+webAPI用法<br>
+```
+//通过insertAdjacentHTML添加html
+var flavors=document.querySelector('.flavor');
+flavor.insertAdjacentHTML('beforeEnd','<li>ABCDEFG</li>');
+flavor.insertAdjacentHTML('beforeEnd','<li>abcefg</li>');
+//移除 高级浏览器支持 虽然很想jquery中的写法，但是这是IE10以上支持的原生API
+document.querySelector('.flavor').remove();
+//移除 兼容性写法
+var node=document.querySelector('.type li:last-child');
+node.parentNode.removeChild('node');
+```
+####2、文本节点
+2.1 JQuery 用法<br>
+```
+//添加文本内容
+$(".type").eq(1).text("abcdefg");
+```
+2.2 Javascript+webAPI用法<br>
+```
+//W3C标准
+document.querySelector(".type")[1].textContent="abcdefg";
+//IE标准
+document.querySelector(".type")[1].innerText="abcdefg";
+```
+####3、html内容
+3.1 JQuery 用法<br>
+```
+$('<div>').html(container).appendTo('body');
+var contents=$('body').html();
+```
+3.2 Javascript+webAPI用法<br>
+```
+//添加
+var div=document.createElement("div");
+div.innerHTML=container;
+document.body.appendChild(div);
+//获取
+var html=document.body.innerHTML;
+```
 
 
 
