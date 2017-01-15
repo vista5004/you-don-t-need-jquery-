@@ -579,11 +579,49 @@ document.body.appendChild(div);
 //获取
 var html=document.body.innerHTML;
 ```
-
-
-
-
-
-
+##七、组建元素
+####1、发送GET, POST, DELETE, PUT, 和PATCH请求
+1.1 JQuery 用法<br>
+```
+//一个简单的jquery get用法
+$.GET('/url').then(function(data){
+    console.log(data);
+},function(data){
+    console.log(data);
+})
+```
+1.2Javascript+webAPI用法<br>
+```
+var xhr=new XHMHttpRequest();
+xhr.open('GET','/url');
+xhr.onload=function(){
+    if(xhr.status>400){
+        console.log("error")
+    }else{
+        console.log('message'+xhr.responseText);
+    }
+}
+xhr.onerror=function(){
+    console.log("error")
+}
+xhr.send();
+```
+1.3 Fetch用法<br>
+```
+fetch('/url').then(function(response){
+    if(response.ok){
+        return response.text();
+    }else{
+        throw Error();
+    }
+}).then(function(){
+    function success(data){
+        console.log(data);
+    },
+    function failure(data){
+        console.log("error")
+    }
+})
+```
 
 
