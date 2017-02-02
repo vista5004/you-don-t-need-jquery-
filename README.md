@@ -579,7 +579,7 @@ document.body.appendChild(div);
 //获取
 var html=document.body.innerHTML;
 ```
-
+##七、AJAX应用
 
 
 
