@@ -580,10 +580,48 @@ document.body.appendChild(div);
 var html=document.body.innerHTML;
 ```
 ##七、AJAX应用
-
-
-
-
-
-
-
+####1、AJAX get获取信息
+1.1 JQuery 用法<br>
+```
+$.get('/my/message').then(
+    function success(message){
+        console.log(message);
+    }
+    function failure(message){
+        console.log(message)
+    }
+)
+```
+1.2 Javascript+webAPI用法<br>
+```
+var xhr=new XHMHttpRequest();
+xhr.open('/my/message');
+xhr.onload=function(){
+    if(xhr.status>=400){
+        console.log('request failure');
+    }else (
+        console.log('message is'+xhr.responseText);
+    )
+};
+xhr.onerror=function(){
+    console.log('name request failure');
+};
+xhr.send();
+```
+1.2 Fetch用法<br>
+```
+fetch('/my/message').then(function(response){
+    if(response.ok){
+        return response.text();
+    }else{
+        throw new error();
+    }
+}).then(
+    function success(message){
+        console.log('message is'+message)
+    },
+    function failure(message){
+        console.error('error is'+message)
+    }
+)
+```
