@@ -608,7 +608,7 @@ xhr.onerror=function(){
 };
 xhr.send();
 ```
-1.2 Fetch用法<br>
+1.3 Fetch用法<br>
 ```
 fetch('/my/message').then(function(response){
     if(response.ok){
@@ -625,3 +625,31 @@ fetch('/my/message').then(function(response){
     }
 )
 ```
+####1、AJAX post获取信息
+1.1 JQuery 用法<br>
+```
+$.ajax({
+    type:'POST',
+    url:'/user/name',
+    contentType:'text/plain',
+    data:'mr id'
+})
+```
+1.2 Javascript+webAPI用法<br>
+```
+var xhr=new xmlHttpRequest();
+xhr.open('POST','/user/name');
+xhr.send('mr id');
+```
+1.3 Fetch用法<br>
+```
+fetch('/user/name',{
+    method:'POST',
+    body:'mr id'
+})
+```
+
+
+
+
+
