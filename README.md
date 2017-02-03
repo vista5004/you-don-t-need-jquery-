@@ -625,8 +625,8 @@ fetch('/my/message').then(function(response){
     }
 )
 ```
-####1、AJAX post获取信息
-1.1 JQuery 用法<br>
+####2、AJAX post获取信息
+2.1 JQuery 用法<br>
 ```
 $.ajax({
     type:'POST',
@@ -635,21 +635,39 @@ $.ajax({
     data:'mr id'
 })
 ```
-1.2 Javascript+webAPI用法<br>
+2.2 Javascript+webAPI用法<br>
 ```
 var xhr=new xmlHttpRequest();
 xhr.open('POST','/user/name');
 xhr.send('mr id');
 ```
-1.3 Fetch用法<br>
+2.3 Fetch用法<br>
 ```
 fetch('/user/name',{
     method:'POST',
     body:'mr id'
 })
 ```
-
-
-
-
-
+####3、AJAX put获取信息
+3.1 JQuery 用法<br>
+```
+$.ajax({
+    method:'PUT',
+    url:'/user/1',
+    contentType:'text/plain',
+    data://complete user record including new mobile number
+})
+```
+3.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('PUT','/user/1');
+xhr.send(/*complete user record including new mobile number*/);
+```
+3.3 Fetch用法<br>
+```
+fetch('/user/1',{
+    method:'PUT',
+    body://complete user record including new mobile number
+})
+```
