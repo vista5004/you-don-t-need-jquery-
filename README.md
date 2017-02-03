@@ -671,3 +671,47 @@ fetch('/user/1',{
     body://complete user record including new mobile number
 })
 ```
+####4、AJAX delete获取信息
+4.1 JQuery 用法<br>
+```
+$.ajax('/user/1',{
+    method:'DELETE'
+})
+```
+4.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('DELETE','/user/1');
+xhr.send();
+```
+4.3 Fetch用法<br>
+```
+fetch('/user/1',{
+    method:'DELETE'
+})
+```
+####5、AJAX patch获取信息
+5.1 JQuery 用法<br>
+```
+$.ajax({
+    method:'PATCH',
+    url:'/user/1',
+    contentType:'text/plain',
+    data:'mobile:555'
+})
+```
+5.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('PATCH','/user/1');
+xhr.send('mobile:5555')
+```
+5.3 Fetch用法<br>
+```
+fetch('/user/1',{
+    method:'PATCH',
+    body:'mobile:5555'
+})
+```
+
+
