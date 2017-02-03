@@ -713,5 +713,45 @@ fetch('/user/1',{
     body:'mobile:5555'
 })
 ```
+####6、URL 编码
+6.1 JQuery 用法<br>
+```
+$.param({
+    key1:some value,
+    key2:some value
+})
+$.ajax({
+    method:'POST',
+    url:'/user',
+    data:{
+        name:'mr id',
+        address:'asdasd',
+        mobile:'55555'
+    }
+})
+```
+6.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+var data=encodeURI('name=mr id&address=asdasdas&mobile=5555');
+xhr.open('POST','/user');
+xhr.setRequestHeader('Content-Type','application/x-www-form-urlencode');
+xhr.send(data);
+```
+6.3 Fetch用法<br>
+```
+var data=encodeURI('name=mr id&address=asdfds&mobile=5555');
+fetch('/user',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencode'},
+    body:data
+})
+```
+####7、JSON 编码
+6.1 JQuery 用法<br>
+```
 
+```
+6.2 Javascript+webAPI用法<br>
 
+6.3 Fetch用法<br>
