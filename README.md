@@ -748,10 +748,69 @@ fetch('/user',{
 })
 ```
 ####7、JSON 编码
-6.1 JQuery 用法<br>
+7.1 JQuery 用法<br>
 ```
+//发送JSON
+$.ajax({
+    method:'POST',
+    url:'/user',
+    contentType:'application/JSON',
+    data:JSON.stringify({
+        name:'mr id',
+        address:'asdf',
+        phone:{
+            home:'33554585',
+            mobile:'12312312'
+        }
+    })
+})
+//获取JSON
+$.getJSON('/user',function(data){
 
+})
 ```
-6.2 Javascript+webAPI用法<br>
+7.2 Javascript+webAPI用法<br>
+```
+//发送JSON
+var xhr=new XMLHttpRequest();
+var data=JSON.stringify({
+    name:'mr id',
+    address:'asdfsd',
+    phone:{
+        home:'123123',
+        mobile:'55555-622'
+    }
+})
+xhr.open('POST','/user');
+xhr.setRequestHeader('Content-Type','application/JSON');
+xhr.send(data);
+//获取JSON数据
+var xhr=new XMLHttpRequest();
+xhr.open('GET','/user');
+xhr.onload=function(){
+    var user=JSON.parse(xhr.responseText);
+};
+xhr.send();
+```
+7.3 Fetch用法<br>
+```
+//发送JSON
+fetch('/user',{
+    method:'POST',
+    headers:{'Content-Type','application/JSON'},
+    body:JSON.stringify({
+        name:'mr id',
+        address:'asdfsd',
+        phone:{
+           home:'123123',
+           mobile:'55555-622'
+        }
+    })
+})
+//获取JSON
+fetch('/user').then(function(request){
+    return request.json();
+}).then(function(){
 
-6.3 Fetch用法<br>
+})
+```
