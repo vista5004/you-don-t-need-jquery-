@@ -814,3 +814,62 @@ fetch('/user').then(function(request){
 
 })
 ```
+####8、多编码
+```html
+<form>
+    <label>first name:
+        <input name='first'>
+    </label>
+    <label>last name:
+        <input name='last'>
+    </label>
+    <button>submit</button>
+</form>
+```
+发送的数据
+```
+1 -----------------------------1686536745986416462127721994
+2 Content-Disposition: form-data; name="first"
+3
+4 Ray
+5 -----------------------------1686536745986416462127721994
+6 Content-Disposition: form-data; name="last"
+7
+8 Nicholus
+9 -----------------------------1686536745986416462127721994--
+```
+8.1 JQuery 用法<br>
+```
+var formData=new FormData();
+formData.append('name','mr id');
+formData.append('address','123123');
+formData.append('phone','555-123123');
+$.ajax({
+    method:'POST',
+    contentType:false,
+    processData:false,
+    url:'/user',
+    data:formData
+})
+```
+8.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+var formData=new FormData();
+formData.append('name','mr id');
+formData.append('address','123123');
+formData.append('phone','555-123123');
+xhr.open('/POST','/user');
+xhr.send(formData);
+```
+8.3 Fetch用法<br>
+```
+var formData=new FormData();
+formData.append('name','mr id');
+formData.append('address','123123');
+formData.append('phone','555-123123');
+fetch('/user',{
+    method:'POST',
+    data:formData
+})
+```
