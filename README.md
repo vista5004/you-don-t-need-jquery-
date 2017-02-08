@@ -814,7 +814,7 @@ fetch('/user').then(function(request){
 
 })
 ```
-####8、多编码
+####8、多项编码
 ```html
 <form>
     <label>first name:
@@ -872,4 +872,66 @@ fetch('/user',{
     method:'POST',
     data:formData
 })
+```
+####9、上传文件
+```html
+<form action='/upload' method='POST' enctype='multipart/form-data' target='uploader'>
+    <input type='file' name='file'>
+</form>
+<iframe name="uploader" style="display: none;"></iframe>
+```
+9.1 JQuery 用法<br>
+```
+function upload(){
+    var iframe=$("iframe");
+    var form=$("form");
+    iframe.on('load',function(){
+        alert('file uploader');
+    1})
+    form.submit();
+}
+```
+9.2 Javascript+webAPI用法<br>
+```
+function upload(){
+    var iframe=document.getElementsByTagName('iframe')[0];
+    var form=document.getElementByTagName('form')[0];
+    iframe.onLoad=function(){
+        alert('file uploader')
+    }
+    form.submit();
+}
+```
+####10、现代浏览器上传文件（>IE9）
+10.1 JQuery 用法<br>
+```
+function onFileInputChange(){
+    var file=$("input[type='file']")[0].files[0];
+    $.ajax({
+        method:'POST',
+        url:'/user',
+        contentType:false,
+        processData:false,
+        data:file
+    })
+}
+```
+10.2 Javascript+webAPI用法<br>
+```
+function onFileInputChange(){
+    var file=document.querySelector('input[type='file']')[0].files[0];
+    var xhr=new XMLHttpRequest();
+    xhr.open('POST','/upload');
+    xhr.send(file);
+}
+```
+10.3 Fetch用法<br>
+```
+function onFileInputChange(){
+    var file=document.querySelector('input[type='file']')[0].files[0];
+    fetch('/uploader',{
+        method:'POST',
+        body:file
+    })
+}
 ```
