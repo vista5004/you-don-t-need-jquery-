@@ -1,5 +1,5 @@
 # you-don`t-need-jquery 速查表
-##一、选择器
+一、选择器
 #### 1、核心选择器
 1.1 JQuery用法：<br>
 (1)<code>id:$("#id")</code><br>
@@ -10,7 +10,7 @@
 (1)<code>id:document.getElementById("id")</code><br>
 (2)<code>class:document.getElementsByClass("class')</code><br>
 (3)<code>element:document.getElementsByTagName("div")</code><br>
-(4)伪类：<code>document.querySelector('input:focus')</code><br>
+(4)伪类：<code>document.querySelector('input:focus')</code>
 ####2、关系选择器
 2.1 JQuery 用法<br>
 (1)Jquery中parent()方法得到父元素：<code>$("").parent();</code><br>
@@ -579,49 +579,359 @@ document.body.appendChild(div);
 //获取
 var html=document.body.innerHTML;
 ```
-##七、组建元素
-####1、发送GET, POST, DELETE, PUT, 和PATCH请求
+##七、AJAX应用
+####1、AJAX get获取信息
 1.1 JQuery 用法<br>
 ```
-//一个简单的jquery get用法
-$.GET('/url').then(function(data){
-    console.log(data);
-},function(data){
-    console.log(data);
-})
+$.get('/my/message').then(
+    function success(message){
+        console.log(message);
+    }
+    function failure(message){
+        console.log(message)
+    }
+)
 ```
-1.2Javascript+webAPI用法<br>
+1.2 Javascript+webAPI用法<br>
 ```
 var xhr=new XHMHttpRequest();
-xhr.open('GET','/url');
+xhr.open('/my/message');
 xhr.onload=function(){
-    if(xhr.status>400){
-        console.log("error")
-    }else{
-        console.log('message'+xhr.responseText);
-    }
-}
+    if(xhr.status>=400){
+        console.log('request failure');
+    }else (
+        console.log('message is'+xhr.responseText);
+    )
+};
 xhr.onerror=function(){
-    console.log("error")
-}
+    console.log('name request failure');
+};
 xhr.send();
 ```
 1.3 Fetch用法<br>
 ```
-fetch('/url').then(function(response){
+fetch('/my/message').then(function(response){
     if(response.ok){
         return response.text();
     }else{
-        throw Error();
+        throw new error();
     }
-}).then(function(){
-    function success(data){
-        console.log(data);
+}).then(
+    function success(message){
+        console.log('message is'+message)
     },
-    function failure(data){
-        console.log("error")
+    function failure(message){
+        console.error('error is'+message)
+    }
+)
+```
+####2、AJAX post获取信息
+2.1 JQuery 用法<br>
+```
+$.ajax({
+    type:'POST',
+    url:'/user/name',
+    contentType:'text/plain',
+    data:'mr id'
+})
+```
+2.2 Javascript+webAPI用法<br>
+```
+var xhr=new xmlHttpRequest();
+xhr.open('POST','/user/name');
+xhr.send('mr id');
+```
+2.3 Fetch用法<br>
+```
+fetch('/user/name',{
+    method:'POST',
+    body:'mr id'
+})
+```
+####3、AJAX put获取信息
+3.1 JQuery 用法<br>
+```
+$.ajax({
+    method:'PUT',
+    url:'/user/1',
+    contentType:'text/plain',
+    data://complete user record including new mobile number
+})
+```
+3.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('PUT','/user/1');
+xhr.send(/*complete user record including new mobile number*/);
+```
+3.3 Fetch用法<br>
+```
+fetch('/user/1',{
+    method:'PUT',
+    body://complete user record including new mobile number
+})
+```
+####4、AJAX delete获取信息
+4.1 JQuery 用法<br>
+```
+$.ajax('/user/1',{
+    method:'DELETE'
+})
+```
+4.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('DELETE','/user/1');
+xhr.send();
+```
+4.3 Fetch用法<br>
+```
+fetch('/user/1',{
+    method:'DELETE'
+})
+```
+####5、AJAX patch获取信息
+5.1 JQuery 用法<br>
+```
+$.ajax({
+    method:'PATCH',
+    url:'/user/1',
+    contentType:'text/plain',
+    data:'mobile:555'
+})
+```
+5.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('PATCH','/user/1');
+xhr.send('mobile:5555')
+```
+5.3 Fetch用法<br>
+```
+fetch('/user/1',{
+    method:'PATCH',
+    body:'mobile:5555'
+})
+```
+####6、URL 编码
+6.1 JQuery 用法<br>
+```
+$.param({
+    key1:some value,
+    key2:some value
+})
+$.ajax({
+    method:'POST',
+    url:'/user',
+    data:{
+        name:'mr id',
+        address:'asdasd',
+        mobile:'55555'
     }
 })
 ```
+6.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+var data=encodeURI('name=mr id&address=asdasdas&mobile=5555');
+xhr.open('POST','/user');
+xhr.setRequestHeader('Content-Type','application/x-www-form-urlencode');
+xhr.send(data);
+```
+6.3 Fetch用法<br>
+```
+var data=encodeURI('name=mr id&address=asdfds&mobile=5555');
+fetch('/user',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencode'},
+    body:data
+})
+```
+####7、JSON 编码
+7.1 JQuery 用法<br>
+```
+//发送JSON
+$.ajax({
+    method:'POST',
+    url:'/user',
+    contentType:'application/JSON',
+    data:JSON.stringify({
+        name:'mr id',
+        address:'asdf',
+        phone:{
+            home:'33554585',
+            mobile:'12312312'
+        }
+    })
+})
+//获取JSON
+$.getJSON('/user',function(data){
 
+})
+```
+7.2 Javascript+webAPI用法<br>
+```
+//发送JSON
+var xhr=new XMLHttpRequest();
+var data=JSON.stringify({
+    name:'mr id',
+    address:'asdfsd',
+    phone:{
+        home:'123123',
+        mobile:'55555-622'
+    }
+})
+xhr.open('POST','/user');
+xhr.setRequestHeader('Content-Type','application/JSON');
+xhr.send(data);
+//获取JSON数据
+var xhr=new XMLHttpRequest();
+xhr.open('GET','/user');
+xhr.onload=function(){
+    var user=JSON.parse(xhr.responseText);
+};
+xhr.send();
+```
+7.3 Fetch用法<br>
+```
+//发送JSON
+fetch('/user',{
+    method:'POST',
+    headers:{'Content-Type','application/JSON'},
+    body:JSON.stringify({
+        name:'mr id',
+        address:'asdfsd',
+        phone:{
+           home:'123123',
+           mobile:'55555-622'
+        }
+    })
+})
+//获取JSON
+fetch('/user').then(function(request){
+    return request.json();
+}).then(function(){
 
+})
+```
+####8、多项编码
+```html
+<form>
+    <label>first name:
+        <input name='first'>
+    </label>
+    <label>last name:
+        <input name='last'>
+    </label>
+    <button>submit</button>
+</form>
+```
+发送的数据
+```
+1 -----------------------------1686536745986416462127721994
+2 Content-Disposition: form-data; name="first"
+3
+4 Ray
+5 -----------------------------1686536745986416462127721994
+6 Content-Disposition: form-data; name="last"
+7
+8 Nicholus
+9 -----------------------------1686536745986416462127721994--
+```
+8.1 JQuery 用法<br>
+```
+var formData=new FormData();
+formData.append('name','mr id');
+formData.append('address','123123');
+formData.append('phone','555-123123');
+$.ajax({
+    method:'POST',
+    contentType:false,
+    processData:false,
+    url:'/user',
+    data:formData
+})
+```
+8.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+var formData=new FormData();
+formData.append('name','mr id');
+formData.append('address','123123');
+formData.append('phone','555-123123');
+xhr.open('/POST','/user');
+xhr.send(formData);
+```
+8.3 Fetch用法<br>
+```
+var formData=new FormData();
+formData.append('name','mr id');
+formData.append('address','123123');
+formData.append('phone','555-123123');
+fetch('/user',{
+    method:'POST',
+    data:formData
+})
+```
+####9、上传文件
+```html
+<form action='/upload' method='POST' enctype='multipart/form-data' target='uploader'>
+    <input type='file' name='file'>
+</form>
+<iframe name="uploader" style="display: none;"></iframe>
+```
+9.1 JQuery 用法<br>
+```
+function upload(){
+    var iframe=$("iframe");
+    var form=$("form");
+    iframe.on('load',function(){
+        alert('file uploader');
+    1})
+    form.submit();
+}
+```
+9.2 Javascript+webAPI用法<br>
+```
+function upload(){
+    var iframe=document.getElementsByTagName('iframe')[0];
+    var form=document.getElementByTagName('form')[0];
+    iframe.onLoad=function(){
+        alert('file uploader')
+    }
+    form.submit();
+}
+```
+####10、现代浏览器上传文件（>IE9）
+10.1 JQuery 用法<br>
+```
+function onFileInputChange(){
+    var file=$("input[type='file']")[0].files[0];
+    $.ajax({
+        method:'POST',
+        url:'/user',
+        contentType:false,
+        processData:false,
+        data:file
+    })
+}
+```
+10.2 Javascript+webAPI用法<br>
+```
+function onFileInputChange(){
+    var file=document.querySelector('input[type='file']')[0].files[0];
+    var xhr=new XMLHttpRequest();
+    xhr.open('POST','/upload');
+    xhr.send(file);
+}
+```
+10.3 Fetch用法<br>
+```
+function onFileInputChange(){
+    var file=document.querySelector('input[type='file']')[0].files[0];
+    fetch('/uploader',{
+        method:'POST',
+        body:file
+    })
+}
+```
