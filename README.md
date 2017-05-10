@@ -954,7 +954,7 @@ var script=document.createElement('script');
 script.setAttribute('script','riptEl.setAttribute('src', 'http://jsonp-aware-endpoint.com/user/1?callback=myJsonpCallback'');
 document.body.appendChild(script);
 ```
-###### 12、跨域通信请求 CORS用法
+#### 12、跨域通信请求 CORS用法
 12.1 JQuery 用法<br>
 ```
 $.ajax('http://someotherdomain.com',{
@@ -984,11 +984,57 @@ fetch('http://someotherdomain.com',{
     credentials:'include'
 })
 ```
-
-
-
-
-
+## 八、浏览器事件
+html
+```
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>event propagation demo</title>
+    </head>
+    <body>
+        <section>
+            <h1>nested divs</h1>
+            <div>one
+                <div>child of one
+                    <div>child of child of one</div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
+```
+#### 1、使用jquery触发DOM事件
+1.1 JQuery 用法<br>
+```
+$('FORM').trigger('submit');
+$('BUTTON[type="submit"]').trigger('click');
+$('INPUT').trigger('focus');
+$('INPUT').trigger('blur');
+$('FORM').submit();
+$('BUTTON[type="submit"]').click();
+$('INPUT').focus();
+$('INPUT').blur();
+//使用jquery触发，而不发生冒泡
+$('BUTTON[type="button"]').triggerHandler('click');
+```
+1.2 Javascript+webAPI用法<br>
+```
+document.querySelector('form').submit();
+document.querySelector('button[type="submit"]').click();
+document.querySelector('input').focus();
+document.querySelector('input').blur();
+//使用webAPI触发，而不发生冒泡
+var clickEvent;
+if(typeof Event==='function'){
+    clickEvent=new Event('click',{bubbles:false})
+}else{
+    clickEvent=document.createEvent('Event');
+    clickEvent.initEvent('click',false,true);
+}
+document.querySelector('button[type="button"]').dispatch(clickEvent)
+```
+#### 2、创建和触发一般事件
 
 
 
