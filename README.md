@@ -935,18 +935,55 @@ function onFileInputChange(){
     })
 }
 ```
+#### 11、跨域通信请求 JSONP用法
+11.1 JQuery 用法<br>
+```
+$.ajax('http://jsonp-aware-endpoint.com/user/1',{
+    jsonp:'callback',
+    dataType:'jsonp'
+}).then(function(response){
 
-
-
-
-
-
-
-
-
-
-
-
+})
+```
+11.2 Javascript+webAPI用法<br>
+```
+window.myJsonpCallback=function(data){
+    console.log(data)
+}
+var script=document.createElement('script');
+script.setAttribute('script','riptEl.setAttribute('src', 'http://jsonp-aware-endpoint.com/user/1?callback=myJsonpCallback'');
+document.body.appendChild(script);
+```
+###### 12、跨域通信请求 CORS用法
+12.1 JQuery 用法<br>
+```
+$.ajax('http://someotherdomain.com',{
+    method:'POST',
+    contentType:'text/plain',
+    data:'sometext',
+    beforeSend:function(xmlHttpRequest){
+        xmlHttpRequest.withCredentials=true;
+    }
+})
+```
+12.2 Javascript+webAPI用法<br>
+```
+var xhr=new XMLHttpRequest();
+xhr.open('POST','http://someotherdomain.com');
+xhr.withCredentials=true;
+xhr.setRequestHeader('Content-Type','text/plain');
+xhr.send('text');
+```
+12.3 Fetch用法<br>
+```
+fetch('http://someotherdomain.com',{
+    method:'POST',
+    headers:{
+        'Content-Type':'text/plain'
+    },
+    credentials:'include'
+})
+```
 
 
 
