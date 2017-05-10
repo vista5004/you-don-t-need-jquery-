@@ -1,5 +1,5 @@
 # you-don`t-need-jquery 速查表
-#一、选择器
+## 一、选择器
 #### 1、核心选择器
 1.1 JQuery用法：<br>
 (1)<code>id:$("#id")</code><br>
@@ -10,8 +10,8 @@
 (1)<code>id:document.getElementById("id")</code><br>
 (2)<code>class:document.getElementsByClass("class')</code><br>
 (3)<code>element:document.getElementsByTagName("div")</code><br>
-(4)伪类：<code>document.querySelector('input:focus')</code>
-####2、关系选择器
+(4)伪类：<code>document.querySelector('input:focus')</code><br>
+#### 2、关系选择器
 2.1 JQuery 用法<br>
 (1)Jquery中parent()方法得到父元素：<code>$("").parent();</code><br>
 (2)Jquery中parent()方法得到父父元素：<code>$("").parent().parent();</code><br>
@@ -27,7 +27,7 @@
 (5)所有的节点：<code>var result=document.querySelectorAll('DIV > *')</code>;<br>
 (6)指定特殊节点：<code>var result=document.querySelectorAll('DIV > P')</code>;//P<br>
 (7)制定节点下面的子节点：<code>DIV.childNodes</code><br>
-####3、同级选择器
+#### 3、同级选择器
 3.1 JQuery 用法<br>
 (1)Jquery中siblings()方法得到相邻的兄弟节点（除自己外都是）：<code>$("").siblings()</code>;<br>
 (2)Jquery中prev()方法得到前面的相邻节点：<code>$("").prev()</code>;<br>
@@ -49,7 +49,7 @@ do{
 (5)找到后一个节点：<br>
 节点：<code>var result=document.querySelector('SPAN').nextSibling.nextSibling.nextSibling;</code><br>
 元素：<code>var result=document.querySelector('SPAN').nextElementSibling.nextElementSibling.nextElementSibling;</code><br>
-####4、祖先元素和后代选择器
+#### 4、祖先元素和后代选择器
 4.1 JQuery 用法<br>
 (1)Jquery中parent()方法得到父元素：<code>var $result=$('p').parent();</code><br>
 (2)Jquery中closet()方法得到最相近的元素：<code>$("p").closet("DIV")</code><br>
@@ -89,7 +89,7 @@ var close=function(referElement,closeSelector){
 (3)找到子元素:<code>document.querySelectorAll('UL *')</code><br>
 (4)找到所有子元素:<code>document.querySelectorAll('UL SPAN')</code><br>
 
-####5、高级元素选择器
+#### 5、高级元素选择器
 5.1 JQuery 用法<br>
 (1)不包括某个元素<code> $("ul li").not('.active')</code>;<br>
 5.2Javascript+webAPI用法<br>
@@ -104,13 +104,13 @@ for(var i=0;i<items.length;i++){
     }
 }
 ```
-####6、混合元素选择器
+#### 6、混合元素选择器
 6.1 JQuery 用法<br>
 (1)Jquery中同时选择多个元素：<code>var result=$("#one ,.two ,ol");</code><br>
 6.2Javascript+webAPI用法<br>
 同时选择多个元素：<code>var result=document.querySelectorAll('#one ,.two ,ol');</code><br>
 
-####7、混合元素选择器
+#### 7、混合元素选择器
 7.1Javascript+webAPI用法<br>
 (1)指定类型的元素：<code>var result=document.querySelectorAll('input[type="button"]')</code><br>
 <code> var result=document.querySelectorAll('input[type="password"]')</code><br>
@@ -118,7 +118,7 @@ for(var i=0;i<items.length;i++){
 7.2 JQuery 用法<br>
 (1)指定类型的元素：<code>var result=$("input[type='button']")</code> <br>
 
-####8、Jquery $的替代
+#### 8、Jquery $的替代
 8.1Javascript+webAPI用法<br>
 (1)通过document.querySelectorAll实现<br>
 ```
@@ -131,38 +131,38 @@ $(".someParent > .someChild");
 $("ul li:not(.active)");
 ```
 
-##二、元素属性
-####1、使用属性找到元素
+## 二、元素属性
+#### 1、使用属性找到元素
 1.1 JQuery 用法<br>
 (1)指定属性的元素：<code>var result=$("[required],[disabled]")</code><br>
 1.2Javascript+webAPI用法<br>
 (1)指定属性的元素：<code>var result=document.querySelectorAll('[required],[disabled]')</code><br>
-####2、使用属性名称与属性值找到元素
+#### 2、使用属性名称与属性值找到元素
 2.1 JQuery 用法<br>
 (1)指定属性名称与值的元素：<code>var result=$("a[href='www.si.co']")</code><br>
 2.2Javascript+webAPI用法<br>
 (1)指定属性名称与值的元素：<code>var result=document.querySelectorAll("a[href='www.cos.s']")</code> <br>
 
-####3、使用属性找到元素选择指定属性具有包含一个给定的子字符串的元素
+#### 3、使用属性找到元素选择指定属性具有包含一个给定的子字符串的元素
 3.1 JQuery 用法<br>
 (1)包含一个给定的子字符串的元素：<code>var result=$("a[href*='www']")</code> <br>
 3.2Javascript+webAPI用法<br>
 (1)包含一个给定的子字符串的元素：<code>var result=document.querySelectorAll("a[href*='www']")</code> <br>
 
-####4、选择指定属性用空格分隔的值中包含一个给定值的元素。
+#### 4、选择指定属性用空格分隔的值中包含一个给定值的元素。
 4.1 JQuery 用法<br>
 (1)用空格分隔的值中包含一个给定值的元素:<code>var result=$("div[class~='two']")</code> <br>
 4.2Javascript+webAPI用法<br>
 (1)用空格分隔的值中包含一个给定值的元素:<code>var result=document.querySelectorAll("[class~='two']")</code> <br>
 
-####5、选择指定属性是以给定字符串开始的元素
+#### 5、选择指定属性是以给定字符串开始的元素
 5.1 JQuery 用法<br>
 (1)选择指定属性是以给定字符串开始的元素:<code>var result=$("div[class^='new']")</code> <br>
 5.2Javascript+webAPI用法<br>
 (1)选择指定属性是以给定字符串开始的元素:<code>var result=document.querySelectorAll("div[class^='new']")</code> <br>
 
-##三、使用元素属性
-####1、读取class属性。
+## 三、使用元素属性
+#### 1、读取class属性。
 1.1 JQuery 用法 <br>
 (1)通过hasClass判断是否包含某个特定的元素 <br>
 ```
@@ -183,7 +183,7 @@ var hasClass=function(element,className){
 var isTick=hasClass(document.querySelector("#tick"),"tick");
 var type=hasClass(document.querySelector("#tick"),"tick")?"normal":"unNormal"
 ```
-####2、添加和删除class属性。
+#### 2、添加和删除class属性。
 2.1 JQuery 用法<br>
 (1)通过addClass和removeClass实现：<code>$(".test").removeClass("red").addClass("blue")</code><br>
 2.2 Javascript+webAPI用法<br>
@@ -200,7 +200,7 @@ var removeClass=function(element,className){
 removeClass(document.getElementsByClassName("test")[0],className);
 document.getElementsByClassName("test")[0].className+="red";
 ```
-####3、触发class属性。
+#### 3、触发class属性。
 3.1 JQuery 用法<br>
 (1)通过toggleClass实现：<br>
 <code>$("#test").toggleClass("hide")</code><br>
@@ -219,7 +219,7 @@ var toggleClass=function(element,className){
 }
 toggleClass(document.getElementsByClassName("test")[0],className);
 ```
-####4、读取attribute属性。
+#### 4、读取attribute属性。
 4.1 JQuery 用法<br>
 (1)通过attr和is实现：<br>
 <code>$("input").attr("type")</code><br>
@@ -230,7 +230,7 @@ toggleClass(document.getElementsByClassName("test")[0],className);
 document.getElementsByTagName("input")[0].getAttribute('type')
 document.getElementsByTagName("input")[0].hasAttribute('required');
 ```
-####5、设置attribute属性。
+#### 5、设置attribute属性。
 5.1 JQuery 用法<br>
 (1)通过Jquery中方法attr/removeAttr实现：<br>
 ```
@@ -245,8 +245,8 @@ document.getElementsByTagName("input")[0].setAttribute("type","email");
 document.getElementsByTagName("input")[0].removeAttribute("required");
 document.getElementsByTagName("input")[0].setAttribute('name','userName');
 ```
-##四、HTML数据存储
-####1、使用data属性来存储数据。
+## 四、HTML数据存储
+#### 1、使用data属性来存储数据。
 1.1 JQuery 用法<br>
 (1)通过Jquery中方法data实现：<br>
 ```
@@ -258,7 +258,7 @@ $("img").data("user","jack");
 <img src="default.png" data-zoom-url="www.com">
 document.getElementsByTaName("img")[0].setAttribute("user","jack");
 ```
-####2、使用data属性来存储负责数据数据。
+#### 2、使用data属性来存储负责数据数据。
 2.1 JQuery 用法<br>
 (1)通过Jquery中方法data实现：<br>
 ```
@@ -450,7 +450,7 @@ var onClicked(clickBox){
     }
 }
 ```
-####3、设置元素的可见性
+#### 3、设置元素的可见性
 3.1 JQuery 用法<br>
 设置可见性
 ```
@@ -462,7 +462,7 @@ $element.show();
 $element.is(":visible")
 $element.is(":hidden")
 ```
-####4、获取元素的宽度和高度
+#### 4、获取元素的宽度和高度
 4.1 JQuery 用法<br>
 ```
 //获取对象高度和宽度
@@ -495,7 +495,7 @@ document.querySelector("div").clientHeight;
 document.querySelector("div").offsetWidth;
 document.querySelector("div").offsetHeight;
 ```
-####5、移动元素
+#### 5、移动元素
 5.1 JQuery 用法<br>
 ```
 //把某一元素移动到另一元素后方
@@ -518,7 +518,7 @@ ul.insertBefore(li1,li2);//在ul中插入li1，并且保证在li2前面
 //使用appendTo插入元素
 document.querySelector('.type').appendChild(document.querySelector('ul > li'));
 ```
-####6、复制元素
+#### 6、复制元素
 6.1 JQuery 用法<br>
 ```
 $(".number").clone();
@@ -528,8 +528,8 @@ $(".number").clone();
 document.querySelector(".number").cloneNode();
 document.querySelector(".number").cloneNode(true);//有true参数表示节点深度复制
 ```
-##六、组建元素
-####1、创建和删除元素
+## 六、组建元素
+#### 1、创建和删除元素
 1.1 JQuery 用法<br>
 ```
 //添加元素
@@ -551,7 +551,7 @@ document.querySelector('.flavor').remove();
 var node=document.querySelector('.type li:last-child');
 node.parentNode.removeChild('node');
 ```
-####2、文本节点
+#### 2、文本节点
 2.1 JQuery 用法<br>
 ```
 //添加文本内容
@@ -564,7 +564,7 @@ document.querySelector(".type")[1].textContent="abcdefg";
 //IE标准
 document.querySelector(".type")[1].innerText="abcdefg";
 ```
-####3、html内容
+#### 3、html内容
 3.1 JQuery 用法<br>
 ```
 $('<div>').html(container).appendTo('body');
@@ -579,8 +579,8 @@ document.body.appendChild(div);
 //获取
 var html=document.body.innerHTML;
 ```
-##七、AJAX应用
-####1、AJAX get获取信息
+## 七、AJAX应用
+#### 1、AJAX get获取信息
 1.1 JQuery 用法<br>
 ```
 $.get('/my/message').then(
@@ -625,7 +625,7 @@ fetch('/my/message').then(function(response){
     }
 )
 ```
-####2、AJAX post获取信息
+#### 2、AJAX post获取信息
 2.1 JQuery 用法<br>
 ```
 $.ajax({
@@ -648,7 +648,7 @@ fetch('/user/name',{
     body:'mr id'
 })
 ```
-####3、AJAX put获取信息
+#### 3、AJAX put获取信息
 3.1 JQuery 用法<br>
 ```
 $.ajax({
@@ -671,7 +671,7 @@ fetch('/user/1',{
     body://complete user record including new mobile number
 })
 ```
-####4、AJAX delete获取信息
+#### 4、AJAX delete获取信息
 4.1 JQuery 用法<br>
 ```
 $.ajax('/user/1',{
@@ -690,7 +690,7 @@ fetch('/user/1',{
     method:'DELETE'
 })
 ```
-####5、AJAX patch获取信息
+#### 5、AJAX patch获取信息
 5.1 JQuery 用法<br>
 ```
 $.ajax({
@@ -713,7 +713,7 @@ fetch('/user/1',{
     body:'mobile:5555'
 })
 ```
-####6、URL 编码
+#### 6、URL 编码
 6.1 JQuery 用法<br>
 ```
 $.param({
@@ -747,7 +747,7 @@ fetch('/user',{
     body:data
 })
 ```
-####7、JSON 编码
+#### 7、JSON 编码
 7.1 JQuery 用法<br>
 ```
 //发送JSON
@@ -814,7 +814,7 @@ fetch('/user').then(function(request){
 
 })
 ```
-####8、多项编码
+#### 8、多项编码
 ```html
 <form>
     <label>first name:
@@ -873,7 +873,7 @@ fetch('/user',{
     data:formData
 })
 ```
-####9、上传文件
+#### 9、上传文件
 ```html
 <form action='/upload' method='POST' enctype='multipart/form-data' target='uploader'>
     <input type='file' name='file'>
@@ -902,7 +902,7 @@ function upload(){
     form.submit();
 }
 ```
-####10、现代浏览器上传文件（>IE9）
+#### 10、现代浏览器上传文件（>IE9）
 10.1 JQuery 用法<br>
 ```
 function onFileInputChange(){
@@ -935,3 +935,23 @@ function onFileInputChange(){
     })
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
